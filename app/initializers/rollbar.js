@@ -1,48 +1,36 @@
-/* global Rollbar */
 import Ember from 'ember';
 
-const { typeOf, Logger } = Ember;
+const { Logger } = Ember;
 
-function stringify(object) {
-  return JSON ? JSON.stringify(object) : object.toString();
+function wrap(fn, method) {
+  return function() {
+    window.Rollbar[method](...arguments);
+    fn.apply(this, arguments);
+  };
 }
 
-function isError(object) {
-  return typeOf(object) === 'error';
+// Copied from ember-metal
+function getStack(error) {
+  let { stack, message } = error;
+
+  if (stack && stack.indexOf(message) === -1) {
+    stack = `${message}\n${stack}`;
+  }
+  return stack;
 }
 
 function initialize() {
-  let errorLogger = Logger.error;
-  Logger.error = function() {
-    let args = Array.prototype.slice.call(arguments);
-    let err = isError(args[0]) ? args[0] : new Error(stringify(args));
-
-    if (window.Rollbar) {
-      Rollbar.error.call(Rollbar, err);
-    }
-    errorLogger.apply(this, arguments);
-  };
-  let warnLogger = Logger.warn;
-  Logger.warn = function() {
-    if (window.Rollbar) {
-      Rollbar.warning(...arguments);
-    }
-    warnLogger.apply(this, arguments);
-  };
-  let infoLogger = Logger.info;
-  Logger.info = function() {
-    if (window.Rollbar) {
-      Rollbar.info(...arguments);
-    }
-    infoLogger.apply(this, arguments);
-  };
-  let debugLogger = Logger.debug;
-  Logger.debug = function() {
-    if (window.Rollbar) {
-      Rollbar.debug(...arguments);
-    }
-    debugLogger.apply(this, arguments);
-  };
+  if (window.Rollbar) {
+    let origError = Logger.error;
+    Logger.error = wrap(Logger.error, 'error');
+    Logger.warn = wrap(Logger.warn, 'warning');
+    Logger.info = wrap(Logger.info, 'info');
+    Logger.debug = wrap(Logger.debug, 'debug');
+    Ember.onerror = function(err) {
+      window.Rollbar.error(err);
+      origError(getStack(err));
+    };
+  }
 }
 
 export default {
