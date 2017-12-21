@@ -52,6 +52,5 @@ module.exports = {
     // Always include, but it may be disabled based on the configuration.
     app.import('vendor/rollbar/rollbar.snippet.js', { prepend: true });
     app.import('vendor/ember-cli-rollbar/config.js', { prepend: true });
-    app.import('vendor/rollbar-module.js');
   }
 };
