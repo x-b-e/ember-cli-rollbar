@@ -24,6 +24,9 @@ module.exports = function(environment) {
     },
     rollbar: {
       enabled: true
+    },
+    'ember-cli-rollbar': {
+      serverToken: 'TEST_SERVER_TOKEN'
     }
   };
 
