@@ -15,7 +15,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/davewasmer/ember-cli-rollbar/",
+  "repository": "https://github.com/paulcwatts/ember-cli-rollbar/",
   "scripts": {
     "build": "ember build",
     "start": "ember serve",
