@@ -2,27 +2,11 @@
 /* eslint-disable object-shorthand */
 'use strict';
 
-const fastbootTransform = require('fastboot-transform');
 const mergeTrees = require('broccoli-merge-trees');
 const writeFile = require('broccoli-file-creator');
 
 module.exports = {
   name: 'ember-cli-rollbar',
-  options: {
-    nodeAssets: {
-      'rollbar': function() {
-        return {
-          vendor: {
-            srcDir: 'dist',
-            include: ['*.js'],
-            processTree(input) {
-              return fastbootTransform(input);
-            }
-          }
-        };
-      }
-    }
-  },
 
   _getConfig() {
     let env = this.app.env;
@@ -46,12 +30,17 @@ module.exports = {
     return this._super.treeForVendor.call(this, tree);
   },
 
-  included: function(app) {
+  included(app) {
     this._super.included.apply(this, arguments);
 
-    // Always include, but it may be disabled based on the configuration.
-    app.import('vendor/rollbar/rollbar.snippet.js', { prepend: true });
-    app.import('vendor/ember-cli-rollbar/config.js', { prepend: true });
+    app.import('node_modules/rollbar/dist/rollbar.snippet.js', {
+      prepend: true,
+      using: [{transformation: 'fastbootShim'}]
+    });
+    app.import('vendor/ember-cli-rollbar/config.js', {
+      prepend: true,
+      using: [{transformation: 'fastbootShim'}]
+    });
     app.import('vendor/rollbar-module.js');
   }
 };
