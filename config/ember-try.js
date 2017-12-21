@@ -70,13 +70,17 @@ module.exports = {
       npm: {
         devDependencies: {}
       }
+    },
+    {
+      name: 'addon-tests',
+      command: 'npm run test:precook && npm run test:mocha'
     }
     /*,
     {
       name: 'fastboot-addon-tests',
       command: 'ember fastboot:test',
-      bower: {
-        dependencies: {}
+      npm: {
+        devDependencies: {}
       }
     }*/
   ]
