@@ -1,4 +1,4 @@
-import { getServerConfig, getInstance, captureEmberErrors, captureEmberLogger } from 'dummy/utils/rollbar';
+import { getServerConfig, getInstance, captureEmberErrors, captureEmberLogger } from 'ember-cli-rollbar/utils/rollbar';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import Ember from 'ember';
