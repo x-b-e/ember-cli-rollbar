@@ -7,7 +7,7 @@ const mergeTrees = require('broccoli-merge-trees');
 const writeFile = require('broccoli-file-creator');
 
 module.exports = {
-  name: 'ember-cli-rollbar',
+  name: 'ember-cli-rollbar2',
   options: {
     nodeAssets: {
       'rollbar': function() {
