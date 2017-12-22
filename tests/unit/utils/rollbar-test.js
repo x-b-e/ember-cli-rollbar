@@ -53,7 +53,8 @@ module('Unit | Utility | rollbar', function(hooks) {
       serverToken: 'xxxyy',
       captureEmberErrors: true,
       outputEmberErrorsToConsole: false,
-      captureEmberLogger: false
+      captureEmberLogger: false,
+      serverTokenEnv: undefined
     })
   });
 
