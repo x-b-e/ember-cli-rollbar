@@ -12,12 +12,16 @@ const CONFIG_DEFAULTS = {
 
 export class RollbarConfig {
   constructor(env) {
-    this._rollbarConfig = env.rollbar;
+    this.environment = env.environment;
+    this._rollbarConfig = env.rollbar || {};
+    this._rollbarConfig.enabled = this._calculateEnabled();
     this._addonConfig = assign({}, CONFIG_DEFAULTS, env['ember-cli-rollbar']);
   }
 
-  get enabled() {
-    return this.rollbarConfig.enabled;
+  _calculateEnabled() {
+    let defaultEnabled = this.environment !== 'development' && this.environment !== 'test';
+    let enabled = this.rollbarConfig.enabled;
+    return typeof enabled !== 'undefined' ? enabled: defaultEnabled;
   }
 
   get rollbarConfig() {

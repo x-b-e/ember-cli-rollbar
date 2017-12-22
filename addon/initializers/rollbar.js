@@ -2,7 +2,7 @@ import { RollbarConfig, captureEmberErrors, captureEmberLogger } from '../utils/
 
 export function initialize(application) {
   let config = new RollbarConfig(application.resolveRegistration('config:environment'));
-  if (config.enabled) {
+  if (config.rollbarConfig.enabled) {
     let instance = config.newInstance();
     if (config.addonConfig.captureEmberErrors) {
       captureEmberErrors(instance, config.addonConfig.outputEmberErrorsToConsole);

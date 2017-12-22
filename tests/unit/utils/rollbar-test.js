@@ -21,17 +21,34 @@ module('Unit | Utility | rollbar', function(hooks) {
     Ember.onerror = undefined;
   });
 
+  test('it is disabled by default when environment==development', function(assert) {
+    let config = new RollbarConfig({
+      environment: 'development'
+    });
+    assert.strictEqual(config.rollbarConfig.enabled, false);
+  });
+
+  test('it is disabled by default when environment==test', function(assert) {
+    let config = new RollbarConfig({
+      environment: 'test'
+    });
+    assert.strictEqual(config.rollbarConfig.enabled, false);
+  });
+
+  test('it is disabled by default when environment==production', function(assert) {
+    let config = new RollbarConfig({
+      environment: 'production'
+    });
+    assert.strictEqual(config.rollbarConfig.enabled, true);
+  });
+
   test('addonConfig', function(assert) {
     let config = new RollbarConfig({
-      rollbar: {
-        enabled: false,
-      },
       'ember-cli-rollbar': {
         serverToken: 'xxxyy',
         outputEmberErrorsToConsole: false
       }
     });
-    assert.equal(config.enabled, false);
     assert.deepEqual(config.addonConfig, {
       serverToken: 'xxxyy',
       captureEmberErrors: true,
@@ -54,6 +71,20 @@ module('Unit | Utility | rollbar', function(hooks) {
       enabled: true,
       accessToken: 'SERVER_TOKEN'
     });
+  });
+
+  test('serverConfig, default disabled', function(assert) {
+    let config = new RollbarConfig({
+      environment: 'development'
+    });
+    assert.strictEqual(config.serverConfig.enabled, false);
+  });
+
+  test('serverConfig, default enabled', function(assert) {
+    let config = new RollbarConfig({
+      environment: 'production'
+    });
+    assert.strictEqual(config.serverConfig.enabled, true);
   });
 
   test('getInstance', function(assert) {
