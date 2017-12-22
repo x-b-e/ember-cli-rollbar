@@ -1,4 +1,4 @@
-import { RollbarConfig, captureEmberErrors, captureEmberLogger } from 'ember-cli-rollbar/utils/rollbar';
+import { RollbarConfig, captureEmberErrors, captureEmberLogger } from 'ember-cli-rollbar2/utils/rollbar';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import Ember from 'ember';
