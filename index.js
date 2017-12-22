@@ -42,9 +42,6 @@ module.exports = {
   },
 
   treeForVendor(tree) {
-    if (!tree) {
-      return tree;
-    }
     tree = mergeTrees([tree, this._generateConfigTree()]);
     return this._super.treeForVendor.call(this, tree);
   },

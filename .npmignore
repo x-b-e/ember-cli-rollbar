@@ -4,6 +4,8 @@
 /tests
 /tmp
 **/.gitkeep
+# Needed to keep vendor directory in npm package.
+!/vendor/.gitkeep
 .bowerrc
 .editorconfig
 .ember-cli
@@ -19,3 +21,6 @@ testem.js
 .node_modules.ember-try/
 bower.json.ember-try
 package.json.ember-try
+
+# WebStorm
+/.idea
