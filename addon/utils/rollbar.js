@@ -7,7 +7,8 @@ const { Logger } = Ember;
 const CONFIG_DEFAULTS = {
   captureEmberErrors: true,
   outputEmberErrorsToConsole: true,
-  captureEmberLogger: false
+  captureEmberLogger: false,
+  serverTokenEnv: undefined
 };
 
 export class RollbarConfig {
@@ -33,13 +34,26 @@ export class RollbarConfig {
   }
 
   /**
+   * This allows you to specify the Rollbar server token in a process environment
+   * variable, so it doesn't end up being leaked into the client Ember environment.
+   */
+  _getServerToken() {
+    if (this.addonConfig.serverTokenEnv && typeof FastBoot !== undefined) {
+      const process = FastBoot.require('process');
+      return process.env[this.addonConfig.serverTokenEnv];
+    } else {
+      return this.addonConfig.serverToken;
+    }
+  }
+
+  /**
    * Returns the configuration for the server-side of Rollbar.
    * Basically it is what is in the environment (and stored in window._rollbarConfig)
    * but replacing the client-side token with a server-side one.
    */
   get serverConfig() {
     return assign({}, this.rollbarConfig, {
-      accessToken: this.addonConfig.serverToken
+      accessToken: this._getServerToken()
     });
   }
 
