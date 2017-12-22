@@ -1,4 +1,4 @@
-import { getServerConfig, getInstance, captureEmberErrors, captureEmberLogger } from 'ember-cli-rollbar/utils/rollbar';
+import { RollbarConfig, captureEmberErrors, captureEmberLogger } from 'ember-cli-rollbar/utils/rollbar';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import Ember from 'ember';
@@ -21,16 +21,44 @@ module('Unit | Utility | rollbar', function(hooks) {
     Ember.onerror = undefined;
   });
 
-  test('getServerConfig', function(assert) {
-    let result = getServerConfig(this.owner);
-    assert.deepEqual(result, {
+  test('addonConfig', function(assert) {
+    let config = new RollbarConfig({
+      rollbar: {
+        enabled: false,
+      },
+      'ember-cli-rollbar': {
+        serverToken: 'xxxyy',
+        outputEmberErrorsToConsole: false
+      }
+    });
+    assert.equal(config.enabled, false);
+    assert.deepEqual(config.addonConfig, {
+      serverToken: 'xxxyy',
+      captureEmberErrors: true,
+      outputEmberErrorsToConsole: false,
+      captureEmberLogger: false
+    })
+  });
+
+  test('serverConfig', function(assert) {
+    let config = new RollbarConfig({
+      rollbar: {
+        enabled: true,
+        accessToken: 'CLIENT_TOKEN'
+      },
+      'ember-cli-rollbar': {
+        serverToken: 'SERVER_TOKEN'
+      }
+    });
+    assert.deepEqual(config.serverConfig, {
       enabled: true,
-      accessToken: 'TEST_SERVER_TOKEN'
+      accessToken: 'SERVER_TOKEN'
     });
   });
 
   test('getInstance', function(assert) {
-    let rollbar = getInstance(this.owner);
+    let config = new RollbarConfig({});
+    let rollbar = config.newInstance();
     // There's not really much to do here other than check that it looks like Rollbar?
     assert.ok(rollbar.critical, 'critical exists');
     assert.ok(rollbar.debug, 'debug exists');
