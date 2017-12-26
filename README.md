@@ -1,6 +1,8 @@
 # ember-cli-rollbar2
 ## Seamless, automatic Rollbar integration for Ember and Fastboot apps
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/paulcwatts/ember-cli-rollbar.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/paulcwatts/ember-cli-rollbar.svg?branch=master)](https://travis-ci.org/paulcwatts/ember-cli-rollbar)
 [![Maintainability](https://api.codeclimate.com/v1/badges/faeeb0c063a9696c61cd/maintainability)](https://codeclimate.com/github/paulcwatts/ember-cli-rollbar/maintainability)
 [![Dependency Status](https://david-dm.org/paulcwatts/ember-cli-rollbar.svg)](https://david-dm.org/paulcwatts/ember-cli-rollbar)
