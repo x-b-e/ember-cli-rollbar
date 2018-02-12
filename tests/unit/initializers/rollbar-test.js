@@ -44,7 +44,6 @@ test('it works', function(assert) {
   initialize(this.application);
   // Ember.Logger methods are patched
   assert.ok(Logger.info.toString().includes('rollbarWrapper'));
-
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
+  // Ensure that the instance is registered
+  assert.ok(this.application.__container__.lookup('rollbar:main'));
 });
