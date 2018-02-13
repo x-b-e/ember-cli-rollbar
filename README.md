@@ -46,6 +46,33 @@ If `enabled` is not set, this addon will automatically enable Rollbar if the Emb
   If you prefer to not have your errors logged to the console, set this to `false`.
 - `captureEmberLogger`: Defaults to `false`. The addon can override `Ember.Logger` and send those notifications to Rollbar.
 
+## Rollbar service
+
+This adds a `rollbar` service to your app which exposes the Rollbar client library to your application. 
+You can use this service to log messages explicitly in outside of exceptions or `Ember.Logger` overrides:
+
+```js
+  import Controller from '@ember/controller';
+  import { inject as service } from '@ember/service';
+  
+  export default Controller.extend({
+    rollbar: service(),
+  
+    actions: {
+      doSomething() {
+        try {
+          somethingThatMightFail();
+        } catch (err) {
+          this.get('rollbar').error('Caught an exception', err);
+        }
+      }
+    }
+  });
+```
+
+The service directly exposes the methods `log`, `debug`, `info`, `warn`, `warning`, `error`, and `critical`.
+The Rollbar client instance itself can be accessed via the `instance` property.
+
 ## FastBoot Support
 
 FastBoot support is *mostly* automatic, however there some changes you will need to make to your project: 
