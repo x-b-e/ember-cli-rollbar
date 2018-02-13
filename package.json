@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-rollbar2",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Drop in Rollbar reporting for Ember ClI.",
   "keywords": [
     "ember-addon"
