@@ -3,7 +3,11 @@ import { getOwner } from '@ember/application';
 
 function wrapConsole(name) {
   /* eslint-disable no-console */
-  return (console && console[name]) ? console[name] : console.error;
+  return function() {
+    if (console && console[name]) {
+      console[name](...arguments);
+    }
+  };
 }
 
 export default Service.extend({
