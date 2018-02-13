@@ -9,11 +9,15 @@ test('it exists', function(assert) {
   let service = this.subject();
   // Ensure that all the function are wrapped?
   assert.ok(service.instance);
-  service.log('log');
-  service.debug('debug');
-  service.info('info');
-  service.warn('warn');
-  service.warning('warning');
-  service.error('error');
-  service.critical('critical');
+  try {
+    service.log('log');
+    service.debug('debug');
+    service.info('info');
+    service.warn('warn');
+    service.warning('warning');
+    service.error('error');
+    service.critical('critical');
+  } catch (err) {
+    assert.notOk(err, 'These should not fail');
+  }
 });
