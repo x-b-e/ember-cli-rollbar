@@ -44,7 +44,6 @@ If `enabled` is not set, this addon will automatically enable Rollbar if the Emb
 - `captureEmberErrors`: Defaults to `true`. The addon can set `Ember.onerror` to capture errors sent by Ember.
 - `outputEmberErrorsToConsole`: Defaults to `true`. When catching Ember errors, it also writes these errors to the console.
   If you prefer to not have your errors logged to the console, set this to `false`.
-- `captureEmberLogger`: Defaults to `false`. The addon can override `Ember.Logger` and send those notifications to Rollbar.
 
 ## Rollbar service
 
