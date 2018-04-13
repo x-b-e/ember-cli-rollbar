@@ -108,7 +108,7 @@ module('Unit | Utility | rollbar', function(hooks) {
       let mock = this.sinon.mock(rollbar);
       mock.expects('error');
 
-      let log = this.sinon.spy(Logger, 'error');
+      let log = this.sinon.spy(console, 'error');
 
       let result = captureEmberErrors(rollbar);
       Ember.onerror(new Error('hello'));
@@ -123,7 +123,7 @@ module('Unit | Utility | rollbar', function(hooks) {
       let mock = this.sinon.mock(rollbar);
       mock.expects('error');
 
-      let log = this.sinon.spy(Logger, 'error');
+      let log = this.sinon.spy(console, 'error');
 
       captureEmberErrors(rollbar, false);
       Ember.onerror(new Error('hello'));

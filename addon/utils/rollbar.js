@@ -102,7 +102,8 @@ export function captureEmberErrors(instance, outputToConsole = true) {
   }
 
   if (outputToConsole) {
-    let origError = Logger.error;
+    /* eslint-disable no-console */
+    let origError = console.error;
     Ember.onerror = function(err) {
       instance.error(err);
       origError(getStack(err));
