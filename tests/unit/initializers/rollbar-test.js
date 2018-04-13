@@ -1,49 +1,53 @@
 import Application from '@ember/application';
-import { run } from '@ember/runloop';
-import Ember from 'ember';
 
 import { initialize } from 'dummy/initializers/rollbar';
 import { module, test } from 'qunit';
-import destroyApp from '../../helpers/destroy-app';
+import { setupTest } from 'ember-qunit';
+import { run } from '@ember/runloop';
+import Ember from 'ember';
 
 const { Logger } = Ember;
 
-module('Unit | Initializer | rollbar', {
-  beforeEach() {
-    run(() => {
-      this.application = Application.create();
-      this.application.register('config:environment', {
-        rollbar: {
-          enabled: true
-        },
-        'ember-cli-rollbar': {
-          captureEmberLogger: true
-        }
-      });
-      // Save all logger methods to switch back
-      this.oldError = Logger.error;
-      this.oldWarn = Logger.warn;
-      this.oldInfo = Logger.info;
-      this.oldDebug = Logger.debug;
+module('Unit | Initializer | foo', function(hooks) {
+  setupTest(hooks);
 
-      this.application.deferReadiness();
+  hooks.beforeEach(function() {
+    this.TestApplication = Application.extend();
+    this.TestApplication.initializer({
+      name: 'initializer under test',
+      initialize
     });
-  },
-  afterEach() {
-    destroyApp(this.application);
+
+    this.application = this.TestApplication.create({ autoboot: false });
+    this.application.register('config:environment', {
+      rollbar: {
+        enabled: true
+      },
+      'ember-cli-rollbar': {
+        captureEmberLogger: true
+      }
+    });
+    // Save all logger methods to switch back
+    this.oldError = Logger.error;
+    this.oldWarn = Logger.warn;
+    this.oldInfo = Logger.info;
+    this.oldDebug = Logger.debug;
+  });
+
+  hooks.afterEach(function() {
+    run(this.application, 'destroy');
     Ember.onerror = undefined;
     Logger.error = this.oldError;
     Logger.warn = this.oldWarn;
     Logger.info = this.oldInfo;
     Logger.debug = this.oldDebug;
-  }
-});
+  });
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  initialize(this.application);
-  // Ember.Logger methods are patched
-  assert.ok(Logger.info.toString().includes('rollbarWrapper'));
-  // Ensure that the instance is registered
-  assert.ok(this.application.__container__.lookup('rollbar:main'));
+  // Replace this with your real tests.
+  test('it works', async function(assert) {
+    run(this.application, 'boot');
+
+    assert.ok(Logger.info.toString().includes('rollbarWrapper'), 'Logger methods are patched');
+    assert.ok(this.owner.lookup('rollbar:main'), 'Instance is registered');
+  });
 });

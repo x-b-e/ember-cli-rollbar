@@ -10,8 +10,8 @@ const vm = require('vm');
 
 function readConfig(path) {
   let f = fs.openSync(path, 'r');
-  let buf = Buffer.alloc(10000);
-  fs.readSync(f, buf, 0, 10000);
+  let buf = Buffer.alloc(40000);
+  fs.readSync(f, buf, 0, 40000);
 
   let pattern = new RegExp(/(window\._rollbarConfig\s*=\s*.*)[;,]/);
   let matches = buf.toString().match(pattern);
@@ -33,8 +33,8 @@ describe('configuration is set correctly', function() {
   before(function() {
     app = new AddonTestApp();
     return app.create('rollbar-config', {
-      emberVersion: '2.18',
-      emberDataVersion: '2.18'
+      emberVersion: '3.1',
+      emberDataVersion: '3.1'
     });
   });
 
