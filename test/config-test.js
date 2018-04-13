@@ -10,8 +10,8 @@ const vm = require('vm');
 
 function readConfig(path) {
   let f = fs.openSync(path, 'r');
-  let buf = Buffer.alloc(10000);
-  fs.readSync(f, buf, 0, 10000);
+  let buf = Buffer.alloc(40000);
+  fs.readSync(f, buf, 0, 40000);
 
   let pattern = new RegExp(/(window\._rollbarConfig\s*=\s*.*)[;,]/);
   let matches = buf.toString().match(pattern);
