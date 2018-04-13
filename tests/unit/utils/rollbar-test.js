@@ -2,7 +2,7 @@ import { RollbarConfig, captureEmberErrors, captureEmberLogger } from 'ember-cli
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import Ember from 'ember';
-import sinonTest from 'ember-sinon-qunit/test-support/test';
+import setupSinonTest from '../../helpers/sinon';
 
 const { Logger } = Ember;
 
@@ -100,46 +100,50 @@ module('Unit | Utility | rollbar', function(hooks) {
     assert.ok(rollbar.configure, 'configure exists');
   });
 
-  sinonTest('captureEmberErrors', function(assert) {
-    let rollbar = new MockRollbar();
-    let mock = this.mock(rollbar);
-    mock.expects('error');
+  module('sinon tests', function(hooks) {
+    setupSinonTest(hooks);
 
-    let log = this.spy(Logger, 'error');
+    test('captureEmberErrors', function(assert) {
+      let rollbar = new MockRollbar();
+      let mock = this.sinon.mock(rollbar);
+      mock.expects('error');
 
-    let result = captureEmberErrors(rollbar);
-    Ember.onerror(new Error('hello'));
+      let log = this.sinon.spy(Logger, 'error');
 
-    assert.ok(log.calledOnce);
-    assert.strictEqual(result, undefined);
-    mock.verify();
-  });
+      let result = captureEmberErrors(rollbar);
+      Ember.onerror(new Error('hello'));
 
-  sinonTest('captureEmberErrors no console output', function(assert) {
-    let rollbar = new MockRollbar();
-    let mock = this.mock(rollbar);
-    mock.expects('error');
+      assert.ok(log.calledOnce);
+      assert.strictEqual(result, undefined);
+      mock.verify();
+    });
 
-    let log = this.spy(Logger, 'error');
+    test('captureEmberErrors no console output', function(assert) {
+      let rollbar = new MockRollbar();
+      let mock = this.sinon.mock(rollbar);
+      mock.expects('error');
 
-    captureEmberErrors(rollbar, false);
-    Ember.onerror(new Error('hello'));
+      let log = this.sinon.spy(Logger, 'error');
 
-    assert.notOk(log.called);
-    mock.verify();
-  });
+      captureEmberErrors(rollbar, false);
+      Ember.onerror(new Error('hello'));
 
-  sinonTest('captureEmberLogger', function(assert) {
-    let rollbar = new MockRollbar();
-    let mock = this.mock(rollbar);
-    mock.expects('info');
+      assert.notOk(log.called);
+      mock.verify();
+    });
 
-    let log = this.spy(Logger, 'info');
+    test('captureEmberLogger', function(assert) {
+      let rollbar = new MockRollbar();
+      let mock = this.sinon.mock(rollbar);
+      mock.expects('info');
 
-    captureEmberLogger(rollbar);
-    Ember.Logger.info('my info message');
+      let log = this.sinon.spy(Logger, 'info');
 
-    assert.ok(log.called);
-    mock.verify();
+      captureEmberLogger(rollbar);
+      Ember.Logger.info('my info message');
+
+      assert.ok(log.called);
+      mock.verify();
+    });
   });
 });
