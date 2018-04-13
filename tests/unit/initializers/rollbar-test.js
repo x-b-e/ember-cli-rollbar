@@ -43,7 +43,6 @@ module('Unit | Initializer | foo', function(hooks) {
     Logger.debug = this.oldDebug;
   });
 
-  // Replace this with your real tests.
   test('it works', async function(assert) {
     run(this.application, 'boot');
 
