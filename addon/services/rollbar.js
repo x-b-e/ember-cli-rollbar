@@ -51,5 +51,8 @@ export default Service.extend({
   },
   critical() {
     return this.instance.critical(...arguments);
+  },
+  setPerson(person) {
+    return this.instance.configure({payload: {person}});
   }
 });

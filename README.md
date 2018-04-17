@@ -69,8 +69,9 @@ You can use this service to log messages explicitly in outside of exceptions or 
   });
 ```
 
-The service directly exposes the methods `log`, `debug`, `info`, `warn`, `warning`, `error`, and `critical`.
+The service directly exposes the methods `log`, `debug`, `info`, `warn`, `warning`, `error`, `critical`, and `setPerson`.
 The Rollbar client instance itself can be accessed via the `instance` property.
+The `setPerson` method configures Rollbar for [Person tracking](https://docs.rollbar.com/docs/javascript#section-person-tracking) and should be called with a hash (or id) that represents the current user.
 
 ## FastBoot Support
 
