@@ -27,6 +27,7 @@ export default Service.extend({
         warning: wrapConsole('warn'),
         error: wrapConsole('error'),
         critical: wrapConsole('error'),
+        configure: wrapConsole('log'),
       };
     }
   },
