@@ -132,13 +132,13 @@ of `fastbootDependencies`:
 
 * `git clone https://github.com/paulcwatts/ember-cli-rollbar.git`
 * `cd ember-cli-rollbar`
-* `npm install`
+* `yarn`
 
 ### Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `yarn run lint:hbs`
+* `yarn run lint:js`
+* `yarn run lint:js -- --fix`
 
 ### Running tests
 
@@ -157,6 +157,6 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 
 ember-cli-rollbar2 is tested with:
 
-* Ember versions 2.12, 2.16 and 2.18 and 3.1+
+* Ember versions 2.16 and 2.18 and 3.5+
 * Rollbar versions 2.3+
-* Node versions 4+
+* Node versions 6+
