@@ -33,8 +33,8 @@ describe('configuration is set correctly', function() {
   before(function() {
     app = new AddonTestApp();
     return app.create('rollbar-config', {
-      emberVersion: '3.1',
-      emberDataVersion: '3.1'
+      emberVersion: '3.5',
+      emberDataVersion: '3.5'
     });
   });
 
