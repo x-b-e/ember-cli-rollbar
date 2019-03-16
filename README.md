@@ -7,6 +7,11 @@
 [![npm version](https://badge.fury.io/js/ember-cli-rollbar2.svg)](https://badge.fury.io/js/ember-cli-rollbar2)
 [![Greenkeeper badge](https://badges.greenkeeper.io/paulcwatts/ember-cli-rollbar.svg)](https://greenkeeper.io/)
 
+## Compatibility
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
 ## Installation
 
 Install as a standard Ember Addon:
@@ -128,35 +133,4 @@ of `fastbootDependencies`:
 
 ## Contributing
 
-### Installation
-
-* `git clone https://github.com/paulcwatts/ember-cli-rollbar.git`
-* `cd ember-cli-rollbar`
-* `yarn`
-
-### Linting
-
-* `yarn run lint:hbs`
-* `yarn run lint:js`
-* `yarn run lint:js -- --fix`
-
-### Running tests
-
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
-
-## Support
-
-ember-cli-rollbar2 is tested with:
-
-* Ember versions 2.16 and 2.18 and 3.5+
-* Rollbar versions 2.3+
-* Node versions 6+
+See the [Contributing](CONTRIBUTING.md) guide for details.
