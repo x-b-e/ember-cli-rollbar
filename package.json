@@ -44,7 +44,6 @@
     "ember-cli-htmlbars": "^3.0.1",
     "ember-cli-htmlbars-inline-precompile": "^3.0.0",
     "ember-cli-inject-live-reload": "^2.0.1",
-    "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.3",
     "ember-cli-uglify": "^3.0.0",
@@ -65,7 +64,16 @@
     "loader.js": "^4.7.0",
     "mocha": "^6.0.2",
     "qunit-dom": "^0.9.0",
+    "release-it": "^12.3.6",
     "rollbar": "^2.3.9"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": true
+    }
   },
   "engines": {
     "node": "8.* || >= 10.*"
