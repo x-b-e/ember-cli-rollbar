@@ -2635,7 +2635,7 @@ buffer-fill@^1.0.0:
   resolved "https://registry.yarnpkg.com/buffer-fill/-/buffer-fill-1.0.0.tgz#f8f78b76789888ef39f205cd637f68e702122b2c"
   integrity sha1-+PeLdniYiO858gXNY39o5wISKyw=
 
-buffer-from@>=1.1, buffer-from@^1.0.0:
+buffer-from@^1.0.0, buffer-from@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
@@ -4162,12 +4162,12 @@ error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
-error-stack-parser@1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-1.3.3.tgz#fada6e3a9cd2b0e080e6d6fc751418649734f35c"
-  integrity sha1-+tpuOpzSsOCA5tb8dRQYZJc081w=
+error-stack-parser@^2.0.4:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-2.0.6.tgz#5a99a707bd7a4c58a797902d48d82803ede6aad8"
+  integrity sha512-d51brTeqC+BHlwF0BhPtcYgF5nlzf9ZZ0ZIUQNZpc9ZB9qw5IJ2diTrBY9jlCJkTLITYPjmiX6OWCwH+fuyNgQ==
   dependencies:
-    stackframe "^0.3.1"
+    stackframe "^1.1.1"
 
 error@^7.0.0:
   version "7.2.0"
@@ -8266,20 +8266,20 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
-rollbar@^2.3.9:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/rollbar/-/rollbar-2.13.0.tgz#6b16a96058ddc929bef43efa3e94ac7b94c8fb26"
-  integrity sha512-bIJeTkaeZ8nD/fw/bTkf1m1jlCfZkx6yE+qdzZM+QE1M0dDO0uW4LEXlBrVEYrmn359ITubRTlt4vH5Ezaulhg==
+rollbar@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/rollbar/-/rollbar-2.16.0.tgz#9b6724f63516e677e08ee57e1f7a0dd8d3f156fc"
+  integrity sha512-O/d6/gPbmVfyhazTx8TGThMACmQd6W6NnZWwNlyfu4IrxYFWgktQp+xCEBPDuJsfiecnYcZj5baW2Ei5I7/Vwg==
   dependencies:
     async "~1.2.1"
-    buffer-from ">=1.1"
+    buffer-from "~1.1.1"
     console-polyfill "0.3.0"
     debug "2.6.9"
-    error-stack-parser "1.3.3"
+    error-stack-parser "^2.0.4"
     json-stringify-safe "~5.0.0"
     lru-cache "~2.2.1"
     request-ip "~2.0.1"
-    source-map ">=0.5.0"
+    source-map "^0.5.7"
     uuid "3.0.x"
   optionalDependencies:
     decache "^3.0.5"
@@ -8674,11 +8674,6 @@ source-map@0.4.x, source-map@^0.4.2:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@>=0.5.0:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
-  integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
-
 source-map@^0.5.0, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.0:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
@@ -8748,10 +8743,10 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
-stackframe@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-0.3.1.tgz#33aa84f1177a5548c8935533cbfeb3420975f5a4"
-  integrity sha1-M6qE8Rd6VUjIk1Uzy/6zQgl19aQ=
+stackframe@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.1.1.tgz#ffef0a3318b1b60c3b58564989aca5660729ec71"
+  integrity sha512-0PlYhdKh6AfFxRyK/v+6/k+/mMfyiEBbTM5L94D0ZytQnJ166wuwoTYLHFWGbs2dpA8Rgq763KGWmN1EQEYHRQ==
 
 stagehand@^1.0.0:
   version "1.0.0"
