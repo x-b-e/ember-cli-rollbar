@@ -1,4 +1,4 @@
-import { deprecate } from '@ember/application/deprecations';
+import { deprecate } from '@ember/debug';
 import { RollbarConfig, captureEmberErrors, captureEmberLogger } from '../utils/rollbar';
 
 export function initialize(application) {
